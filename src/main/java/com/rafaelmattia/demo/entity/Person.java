@@ -3,33 +3,36 @@ package com.rafaelmattia.demo.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import java.util.Date;
-import static jakarta.persistence.GenerationType.AUTO;
+import java.time.LocalDate;
 
+import static jakarta.persistence.GenerationType.SEQUENCE;
+
+@ToString
+@Setter
+@Getter
 @Entity(name = "Person")
 @Table(
         name = "person"
 )
-@Setter
-@Getter
 public class Person {
 
     @Id
     @SequenceGenerator(
-            name = "person_generator",
-            sequenceName = "person_generator",
+            name = "person_sequence",
+            sequenceName = "person_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
-            strategy = AUTO,
+            strategy = SEQUENCE,
             generator = "person_sequence"
     )
     @Column(
-            name = "id",
+            name = "idPerson",
             updatable = false
     )
-    private Long id;
+    private Long idPerson;
 
     @Column(
             name = "first_name",
@@ -48,13 +51,16 @@ public class Person {
     @Column(
             name = "birth_date"
     )
-    private Date birthDate;
+    private LocalDate birthDate;
 
-    public Person(Long id,
-                  String firstName,
+//    @OneToOne
+//    @JoinColumn(name = "id")
+//    private String principalAddress;
+
+    public Person(String firstName,
                   String lastName,
-                  Date birthDate) {
-        this.id = id;
+                  LocalDate birthDate) {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
