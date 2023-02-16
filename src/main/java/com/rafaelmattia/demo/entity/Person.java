@@ -55,9 +55,10 @@ public class Person {
 
     @OneToOne
     @JoinColumn(
-            //name = "address_id",
+            name = "principalAddress",
             referencedColumnName = "id",
-            unique = true
+            updatable = false
+            //unique = true
             //nullable = false
     )
     private Address principalAddress;
