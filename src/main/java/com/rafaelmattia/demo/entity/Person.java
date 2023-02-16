@@ -1,14 +1,15 @@
 package com.rafaelmattia.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Setter
 @Getter
@@ -29,10 +30,10 @@ public class Person {
             generator = "person_sequence"
     )
     @Column(
-            name = "idPerson",
+            name = "id",
             updatable = false
     )
-    private Long idPerson;
+    private Long id;
 
     @Column(
             name = "first_name",
@@ -41,8 +42,7 @@ public class Person {
     )
     private String firstName;
 
-    @Column(
-            name = "last_name",
+    @Column(name = "last_name",
             nullable = false,
             columnDefinition = "TEXT"
     )
@@ -53,20 +53,11 @@ public class Person {
     )
     private LocalDate birthDate;
 
-//    @OneToOne
-//    @JoinColumn(name = "id")
-//    private String principalAddress;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "address_id", referencedColumnName = "id")
+//    private Address principalAddress;
 
-    public Person(String firstName,
-                  String lastName,
-                  LocalDate birthDate) {
+//    @ManyToMany
+//    private Set<Address> addresses;
 
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-    }
-
-    public Person(){
-
-    }
 }
