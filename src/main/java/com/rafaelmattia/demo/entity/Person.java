@@ -53,9 +53,14 @@ public class Person {
     )
     private LocalDate birthDate;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
-//    private Address principalAddress;
+    @OneToOne
+    @JoinColumn(
+            //name = "address_id",
+            referencedColumnName = "id",
+            unique = true
+            //nullable = false
+    )
+    private Address principalAddress;
 
 //    @ManyToMany
 //    private Set<Address> addresses;

@@ -1,15 +1,18 @@
 package com.rafaelmattia.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Setter
+@Getter
 @Entity
 @Table(name = "address")
 public class Address {
@@ -56,9 +59,10 @@ public class Address {
             columnDefinition = "TEXT"
     )
     private String city;
-//
-//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "person_id", referencedColumnName = "id")
-//    private Set<Person> personAddresses;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
+
+    private List<Person> personAddresses;
 
 }
