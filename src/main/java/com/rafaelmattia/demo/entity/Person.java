@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
@@ -57,13 +58,19 @@ public class Person {
     @JoinColumn(
             name = "principalAddress",
             referencedColumnName = "id",
-            updatable = false
-            //unique = true
-            //nullable = false
+            //updatable = false,
+//            unique = true,
+            nullable = false
     )
     private Address principalAddress;
 
-//    @ManyToMany
-//    private Set<Address> addresses;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "personAddresses",
+            joinColumns=@JoinColumn(name = "person_id", referencedColumnName = "id"),
+            inverseJoinColumns=@JoinColumn(name="addresses_id"))
+    private Set<Address> addresses;
 
+    public Person(Long id) {
+        this.id = id;
+    }
 }

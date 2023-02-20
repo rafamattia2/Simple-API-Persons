@@ -60,9 +60,8 @@ public class Address {
     )
     private String city;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id", referencedColumnName = "id", nullable = false)
-
-    private List<Person> personAddresses;
+    @Column(name = "persons")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "addresses")
+    private Set<Person> persons;
 
 }

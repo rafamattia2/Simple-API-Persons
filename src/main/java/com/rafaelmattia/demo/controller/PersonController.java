@@ -19,7 +19,6 @@ public class PersonController {
 
     @GetMapping
     public ResponseEntity<List<Person>> findAll() {
-
         return ResponseEntity.ok(personService.findAll());
     }
 
@@ -32,14 +31,6 @@ public class PersonController {
     public ResponseEntity<Person> save(@RequestBody Person person) {
         return ResponseEntity.ok(personService.save(person));
     }
-
-//    @PostMapping("/saveAddress/{id}")
-//    public ResponseEntity<Person> saveAdress(@RequestBody Person person, @PathVariable Address address){
-//        person.setPrincipalAddress(address);
-//        Person personWithAddress = personService.save(person);
-//        return ResponseEntity.ok(person);
-//
-//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Person> put(@RequestBody Person person, @PathVariable Long id){
