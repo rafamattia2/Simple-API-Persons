@@ -1,14 +1,12 @@
 package com.rafaelmattia.demo.controller;
 
-import com.rafaelmattia.demo.dto.AddressDetails;
-import com.rafaelmattia.demo.dto.PersonDescription;
-import com.rafaelmattia.demo.dto.PersonDetails;
-import com.rafaelmattia.demo.dto.PersonForm;
+import com.rafaelmattia.demo.dto.*;
 import com.rafaelmattia.demo.entity.Address;
 import com.rafaelmattia.demo.entity.Person;
 import com.rafaelmattia.demo.repository.AddressRepository;
 import com.rafaelmattia.demo.service.AddressService;
 import com.rafaelmattia.demo.service.PersonService;
+import com.rafaelmattia.demo.util.AddressMapperUtil;
 import com.rafaelmattia.demo.util.PersonMapperUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +37,15 @@ public class PersonController {
         return ResponseEntity.ok(personDetails);
     }
 
+    @GetMapping("/addresses/{id}")
+    public ResponseEntity<Set<AddressDescription>> findAddresses(@PathVariable Long id) {
+        Person person = personService.findById(id);
+        Set<AddressDescription> addressDescriptionSet = person.getAddresses().stream()
+                .map(address -> AddressMapperUtil.mapToDescription(address))
+                .collect(Collectors.toSet());
+        return ResponseEntity.ok(addressDescriptionSet);
+    }
+
     @PostMapping
     public ResponseEntity<PersonDetails> create(@RequestBody PersonForm personForm) {
         Person person = PersonMapperUtil.map(personForm);
@@ -65,9 +72,9 @@ public class PersonController {
         return ResponseEntity.ok().build();
     }
     @GetMapping("/principalAddress/{id}")
-    public AddressDetails findPrincipalAddress(@PathVariable Long id) {
+    public ResponseEntity<AddressDetails> findPrincipalAddress(@PathVariable Long id) {
         PersonDetails personDetails = PersonMapperUtil.mapToDetails(personService.findById(id));
-        return ResponseEntity.ok(personDetails.principalAddressDetails()).getBody();
+        return ResponseEntity.ok(personDetails.principalAddressDetails());
     }
 
 }
