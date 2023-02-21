@@ -17,9 +17,6 @@ import java.util.Optional;
 public class PersonService {
     private PersonRepository personRepository;
 
-
-
-
     public Person create(Person person) {
         return personRepository.save(person);
     }
@@ -34,6 +31,7 @@ public class PersonService {
             return null;
         }
     }
+
     public Person put(Person person, Long id) {
         Person oldPerson= this.findById(id);
         oldPerson.setBirthDate(person.getBirthDate());
@@ -42,9 +40,11 @@ public class PersonService {
         oldPerson.setPrincipalAddress(person.getPrincipalAddress());
         return personRepository.save(oldPerson);
     }
+
     public void addAddressInPerson(Person person, Address address) {
         personRepository.addPersonInAddress(person.getId(), address.getId());
     }
+
     public void deleteById(Long id) {
         personRepository.deleteById(id);
     }

@@ -17,8 +17,8 @@ public class AddressMapperUtil {
         address.setCity(addressForm.city());
         return address;
     }
-    public static AddressDetails mapToDetails(Address address) {
 
+    public static AddressDetails mapToDetails(Address address) {
         Set<Person> setPersons = address.getPersons();
         Set<PersonDescription> personsDescriptionSet = null;
         if (setPersons != null){
@@ -26,7 +26,6 @@ public class AddressMapperUtil {
                     .map(person -> PersonMapperUtil.mapToDescription(person))
                     .collect(Collectors.toSet());
         }
-
         AddressDetails addressDetails = new AddressDetails(
                 address.getId(),
                 address.getRoad(),
@@ -35,7 +34,6 @@ public class AddressMapperUtil {
                 address.getNumber(),
                 personsDescriptionSet
         );
-
         return addressDetails;
     }
 

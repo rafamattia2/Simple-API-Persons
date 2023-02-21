@@ -12,6 +12,5 @@ public record PersonDetails(
         LocalDate birthDate,
         AddressDetails principalAddressDetails,
         Set<AddressDescription> addresses
-
 ){
 }

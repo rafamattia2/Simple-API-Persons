@@ -14,9 +14,9 @@ public class PersonMapperUtil {
         person.setLastName(personForm.lastName());
         person.setBirthDate(personForm.birthDate());
         person.setPrincipalAddress(personForm.principalAddress());
-
         return person;
     }
+
     public static PersonDescription mapToDescription(Person person){
         PersonDescription personDescription = new PersonDescription(
                 person.getId(),

@@ -30,6 +30,7 @@ public class AddressController {
         AddressDetails addressDetails = AddressMapperUtil.mapToDetails(address);
         return ResponseEntity.ok(addressDetails);
     }
+
     @GetMapping
     public ResponseEntity<Set<AddressDescription>> findAll() {
         Set<AddressDescription> addressDescription = addressService.findAll().stream()
@@ -37,11 +38,13 @@ public class AddressController {
                 .collect(Collectors.toSet());
         return ResponseEntity.ok(addressDescription);
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<AddressDetails> findById(@PathVariable Long id) {
         AddressDetails addressDetails = AddressMapperUtil.mapToDetails(addressService.findById(id));
         return ResponseEntity.ok(addressDetails);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<AddressDetails> update(@RequestBody AddressForm addressForm, @PathVariable Long id){
         Address address = AddressMapperUtil.map(addressForm);
@@ -49,6 +52,7 @@ public class AddressController {
         AddressDetails addressDetails = AddressMapperUtil.mapToDetails(address);
         return ResponseEntity.ok(addressDetails);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         addressService.deleteById(id);

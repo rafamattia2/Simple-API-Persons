@@ -7,5 +7,4 @@ public record AddressDescription(
         String city,
         Integer houseNumber
 ) {
-
 }

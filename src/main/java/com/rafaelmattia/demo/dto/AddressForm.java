@@ -10,7 +10,5 @@ public record AddressForm(
         String cep,
         Integer houseNumber,
         String city
-//        Set<Long> personsId
-
 ) {
 }

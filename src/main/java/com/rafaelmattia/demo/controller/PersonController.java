@@ -46,6 +46,12 @@ public class PersonController {
         return ResponseEntity.ok(addressDescriptionSet);
     }
 
+    @GetMapping("/principalAddress/{id}")
+    public ResponseEntity<AddressDetails> findPrincipalAddress(@PathVariable Long id) {
+        PersonDetails personDetails = PersonMapperUtil.mapToDetails(personService.findById(id));
+        return ResponseEntity.ok(personDetails.principalAddressDetails());
+    }
+
     @PostMapping
     public ResponseEntity<PersonDetails> create(@RequestBody PersonForm personForm) {
         Person person = PersonMapperUtil.map(personForm);
@@ -66,15 +72,10 @@ public class PersonController {
         personService.addAddressInPerson(person, address);
         return ResponseEntity.ok().build();
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         personService.deleteById(id);
         return ResponseEntity.ok().build();
     }
-    @GetMapping("/principalAddress/{id}")
-    public ResponseEntity<AddressDetails> findPrincipalAddress(@PathVariable Long id) {
-        PersonDetails personDetails = PersonMapperUtil.mapToDetails(personService.findById(id));
-        return ResponseEntity.ok(personDetails.principalAddressDetails());
-    }
-
 }

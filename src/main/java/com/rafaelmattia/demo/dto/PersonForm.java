@@ -10,8 +10,5 @@ public record PersonForm(
         String lastName,
         LocalDate birthDate,
         Address principalAddress
-//        Set<Long> addressesId
-
-
 ) {
 }
