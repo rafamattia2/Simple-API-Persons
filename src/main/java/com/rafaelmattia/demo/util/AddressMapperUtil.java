@@ -23,7 +23,7 @@ public class AddressMapperUtil {
         Set<PersonDescription> personsDescriptionSet = null;
         if (setPersons != null){
            personsDescriptionSet = address.getPersons().stream()
-                    .map(person -> PersonMapperUtil.map(person))
+                    .map(person -> PersonMapperUtil.mapToDescription(person))
                     .collect(Collectors.toSet());
         }
 

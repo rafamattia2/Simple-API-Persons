@@ -21,47 +21,22 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 public class Person {
 
     @Id
-    @SequenceGenerator(
-            name = "person_sequence",
-            sequenceName = "person_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = SEQUENCE,
-            generator = "person_sequence"
-    )
-    @Column(
-            name = "id",
-            updatable = false
-    )
+    @SequenceGenerator(name = "person_sequence", sequenceName = "person_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = SEQUENCE, generator = "person_sequence")
+    @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(
-            name = "first_name",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "first_name", nullable = false, columnDefinition = "TEXT")
     private String firstName;
 
-    @Column(name = "last_name",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "last_name", nullable = false, columnDefinition = "TEXT")
     private String lastName;
 
-    @Column(
-            name = "birth_date"
-    )
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @OneToOne
-    @JoinColumn(
-            name = "principalAddress",
-            referencedColumnName = "id",
-            //updatable = false,
-//            unique = true,
-            nullable = false
-    )
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "principalAddress", referencedColumnName = "id", nullable = false)
     private Address principalAddress;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

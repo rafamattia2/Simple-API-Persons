@@ -23,6 +23,13 @@ import java.util.stream.Collectors;
 public class AddressController {
     private AddressService addressService;
 
+    @PostMapping
+    public ResponseEntity<AddressDetails> create(@RequestBody AddressForm addressForm) {
+        Address address = AddressMapperUtil.map(addressForm);
+        address = addressService.create(address);
+        AddressDetails addressDetails = AddressMapperUtil.mapToDetails(address);
+        return ResponseEntity.ok(addressDetails);
+    }
     @GetMapping
     public ResponseEntity<Set<AddressDescription>> findAll() {
         Set<AddressDescription> addressDescription = addressService.findAll().stream()
@@ -30,18 +37,9 @@ public class AddressController {
                 .collect(Collectors.toSet());
         return ResponseEntity.ok(addressDescription);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<AddressDetails> findById(@PathVariable Long id) {
         AddressDetails addressDetails = AddressMapperUtil.mapToDetails(addressService.findById(id));
-        return ResponseEntity.ok(addressDetails);
-    }
-
-    @PostMapping
-    public ResponseEntity<AddressDetails> save(@RequestBody AddressForm addressForm) {
-        Address address = AddressMapperUtil.map(addressForm);
-        address = addressService.save(address);
-        AddressDetails addressDetails = AddressMapperUtil.mapToDetails(address);
         return ResponseEntity.ok(addressDetails);
     }
     @PutMapping("/{id}")
@@ -51,7 +49,6 @@ public class AddressController {
         AddressDetails addressDetails = AddressMapperUtil.mapToDetails(address);
         return ResponseEntity.ok(addressDetails);
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         addressService.deleteById(id);

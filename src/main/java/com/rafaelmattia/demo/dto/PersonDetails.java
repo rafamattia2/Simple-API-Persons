@@ -6,10 +6,11 @@ import java.time.LocalDate;
 import java.util.Set;
 
 public record PersonDetails(
+        Long id,
         String firstName,
         String lastName,
         LocalDate birthDate,
-        Address principalAddress,
+        AddressDetails principalAddressDetails,
         Set<AddressDescription> addresses
 
 ){

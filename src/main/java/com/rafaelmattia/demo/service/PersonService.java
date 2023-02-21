@@ -18,14 +18,14 @@ public class PersonService {
     private PersonRepository personRepository;
 
 
+
+
+    public Person create(Person person) {
+        return personRepository.save(person);
+    }
     public List<Person> findAll() {
         return personRepository.findAll();
     }
-
-    public Person save(Person person) {
-        return personRepository.save(person);
-    }
-
     public Person findById(Long id) {
         Optional<Person> personOptional = personRepository.findById(id);
         if(personOptional.isPresent()){
@@ -41,5 +41,11 @@ public class PersonService {
         oldPerson.setLastName(person.getLastName());
         oldPerson.setPrincipalAddress(person.getPrincipalAddress());
         return personRepository.save(oldPerson);
+    }
+    public void addAddressInPerson(Person person, Address address) {
+        personRepository.addPersonInAddress(person.getId(), address.getId());
+    }
+    public void deleteById(Long id) {
+        personRepository.deleteById(id);
     }
 }
