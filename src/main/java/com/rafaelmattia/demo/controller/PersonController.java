@@ -3,7 +3,6 @@ package com.rafaelmattia.demo.controller;
 import com.rafaelmattia.demo.dto.*;
 import com.rafaelmattia.demo.entity.Address;
 import com.rafaelmattia.demo.entity.Person;
-import com.rafaelmattia.demo.repository.AddressRepository;
 import com.rafaelmattia.demo.service.AddressService;
 import com.rafaelmattia.demo.service.PersonService;
 import com.rafaelmattia.demo.util.AddressMapperUtil;
@@ -11,8 +10,6 @@ import com.rafaelmattia.demo.util.PersonMapperUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 

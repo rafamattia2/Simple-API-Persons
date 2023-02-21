@@ -4,16 +4,11 @@ import com.rafaelmattia.demo.dto.AddressDescription;
 import com.rafaelmattia.demo.dto.AddressDetails;
 import com.rafaelmattia.demo.dto.AddressForm;
 import com.rafaelmattia.demo.entity.Address;
-import com.rafaelmattia.demo.entity.Person;
-import com.rafaelmattia.demo.repository.PersonRepository;
 import com.rafaelmattia.demo.service.AddressService;
 import com.rafaelmattia.demo.util.AddressMapperUtil;
 import lombok.AllArgsConstructor;
-import lombok.Delegate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 

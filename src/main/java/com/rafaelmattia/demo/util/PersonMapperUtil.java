@@ -3,7 +3,6 @@ package com.rafaelmattia.demo.util;
 import com.rafaelmattia.demo.dto.*;
 import com.rafaelmattia.demo.entity.Address;
 import com.rafaelmattia.demo.entity.Person;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 

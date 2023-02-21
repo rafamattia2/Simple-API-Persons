@@ -1,6 +1,5 @@
 package com.rafaelmattia.demo.dto;
 
-import java.awt.*;
 import java.util.Set;
 
 public record AddressDetails(

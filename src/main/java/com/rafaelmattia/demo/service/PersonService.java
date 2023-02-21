@@ -2,10 +2,8 @@ package com.rafaelmattia.demo.service;
 
 import com.rafaelmattia.demo.entity.Address;
 import com.rafaelmattia.demo.entity.Person;
-import com.rafaelmattia.demo.repository.AddressRepository;
 import com.rafaelmattia.demo.repository.PersonRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
